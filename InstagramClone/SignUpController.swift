@@ -11,6 +11,7 @@ import JGProgressHUD
 import FirebaseFirestore
 
 class SignUpController: UIViewController {
+  
     
     let btnAddPhoto : UIButton = {
        
@@ -49,7 +50,7 @@ class SignUpController: UIViewController {
         
         if formValidate {
             btnRegister.isEnabled = true
-            btnRegister.backgroundColor = UIColor.RGBConverter(red: 20, green: 155, blue: 235)
+            btnRegister.backgroundColor = UIColor.mainBlue()
         } else {
             btnRegister.isEnabled = false
             btnRegister.backgroundColor = UIColor.RGBConverter(red: 150, green: 205, blue: 245)
@@ -159,6 +160,17 @@ class SignUpController: UIViewController {
                         print("USER DATA HAS JUST SAVED SUCCESSFULLY")
                         hud.dismiss(animated: true)
                         self.makeItEasy()
+                        let keyWindow = UIApplication.shared.connectedScenes
+                            .filter ({ $0.activationState == .foregroundActive})
+                            .map ({ $0 as?  UIWindowScene})
+                            .compactMap({$0})
+                            .first?.windows
+                            .filter({$0.isKeyWindow}).first
+                    
+                        guard let mainTabBarController = keyWindow?.rootViewController as? MainTabBarController else {return}
+                        
+                        mainTabBarController.goesToUserProfile()
+                        self.dismiss(animated: true, completion: nil)
                     }
                    
                 }
@@ -180,11 +192,39 @@ class SignUpController: UIViewController {
         successfulHud.show(in: self.view)
         successfulHud.dismiss(afterDelay: 2)
     }
+
+    let btnHaveAccount : UIButton = {
+        let btn = UIButton(type: .system)
+        let attrTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [.foregroundColor : UIColor.init(white: 0, alpha: 0.4), .font : UIFont.systemFont(ofSize: 15)])
+        attrTitle.append(NSAttributedString(string: "Sign In.", attributes: [.foregroundColor : UIColor.RGBConverter(red: 20, green: 155, blue: 235), .font : UIFont.boldSystemFont(ofSize: 15)]))
+        btn.setAttributedTitle(attrTitle, for: .normal)
+        btn.addTarget(self, action: #selector(btnSignInPressed), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc fileprivate func btnSignInPressed() {
+        
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
+    
+    let lineView : UIView = {
+       let view = UIView()
+        view.backgroundColor = .init(white: 0, alpha: 0.09)
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(btnHaveAccount)
+        btnHaveAccount.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 50)
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
         view.addSubview(btnAddPhoto)
+        view.addSubview(lineView)
+        lineView.anchor(top: btnHaveAccount.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 1)
         
         btnAddPhoto.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 40, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 150, height: 150)
         
