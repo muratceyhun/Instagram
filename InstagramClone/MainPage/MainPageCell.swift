@@ -13,16 +13,15 @@ protocol MainPageCellDelegate {
 }
 
 
-
 class MainPageCell : UICollectionViewCell {
     var delegate : MainPageCellDelegate?
     var share : Share? {
         didSet {
-                
+            
             guard let url = share?.shareViewURL,
                   let viewURL = URL(string: url) else { return }
             imgSharePhoto.sd_setImage(with: viewURL, completed: nil)
-        
+            
             lblUserName.text = share?.user.userName
             
             guard let pURL = share?.user.profilePhotoURL,
@@ -50,7 +49,7 @@ class MainPageCell : UICollectionViewCell {
     }
     
     let lblShareComent : UILabel = {
-       let lbl = UILabel()
+        let lbl = UILabel()
         
         
         lbl.numberOfLines = 0
@@ -82,12 +81,7 @@ class MainPageCell : UICollectionViewCell {
         btn.addTarget(self, action: #selector(btnCommentPressed), for: .touchUpInside)
         return btn
     }()
-    
-    
     @objc fileprivate func btnCommentPressed() {
-        
-        
-        print("COMMENTTTT")
         guard let share = self.share  else { return }
         delegate?.pressedComment(share : share)
         
@@ -114,21 +108,19 @@ class MainPageCell : UICollectionViewCell {
     }()
     
     let imgUserProfilePhoto : UIImageView = {
-       let img = UIImageView()
+        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         img.backgroundColor = .blue
         return img
     }()
     
-    
     let imgSharePhoto : UIImageView = {
-       let img = UIImageView()
+        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         return img
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -153,8 +145,6 @@ class MainPageCell : UICollectionViewCell {
         formButtons()
         
         btnBookmark.anchor(top: imgSharePhoto.bottomAnchor, bottom: nil, leading: nil, trailing: trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 40, height: 50)
-        
-        
     }
     
     fileprivate func formButtons() {
@@ -164,12 +154,10 @@ class MainPageCell : UICollectionViewCell {
         addSubview(lblShareComent)
         stackView.anchor(top: imgSharePhoto.bottomAnchor, bottom: nil, leading: leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 120, height: 50)
         lblShareComent.anchor(top: btnLike.bottomAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 8, paddingRight: -8, width: 0, height: 0)
-        
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-      
+    
 }
