@@ -117,7 +117,6 @@ class MainController : UICollectionViewController {
                         
                     }
                 })
-                
         }
     }
     fileprivate func arrangeButtons(){
@@ -131,11 +130,6 @@ class MainController : UICollectionViewController {
         let cameraController = CameraController()
         cameraController.modalPresentationStyle = .fullScreen
         present(cameraController, animated: true, completion: nil)
-
-        
-
-
-
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -168,13 +162,8 @@ class MainController : UICollectionViewController {
             self.fetchShares(user: user)
         }
     }
-    
- 
-       
  }
     
- 
-
 extension MainController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -195,11 +184,8 @@ extension MainController : MainPageCellDelegate {
         
         var share = self.shares[indexPath.row]
 
-        
         guard let shareID = share.id else { return }
-        
         guard let validatedUserID = Auth.auth().currentUser?.uid else { return }
-        
         let additiveValue = [validatedUserID : share.liked == true ? 0 : 1 ]
         
         Firestore.firestore().collection("Likes").document(shareID).getDocument { (snapshot, error) in
