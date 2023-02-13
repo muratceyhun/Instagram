@@ -24,7 +24,6 @@ class CommentController : UICollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -80, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -80, right: 0)
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: commentCellID)
-        
         fetchComment()
     }
     
@@ -52,8 +51,6 @@ class CommentController : UICollectionViewController {
                     self.collectionView.reloadData()
                 }
             })
-
-
         }
         
     }
