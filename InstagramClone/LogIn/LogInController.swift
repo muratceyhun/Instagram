@@ -25,11 +25,6 @@ class LogInController : UIViewController {
     }()
     
     
-  
-    
-    
-    
-    
     let txtPassword : UITextField = {
         let txt = UITextField()
         txt.placeholder = "Password"
@@ -99,11 +94,7 @@ class LogInController : UIViewController {
             successfullHud.dismiss(afterDelay: 2)
             return
         }
-
-        
     }
-    
-    
     
     
     let logoView : UIView = {
