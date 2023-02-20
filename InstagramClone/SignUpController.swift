@@ -12,7 +12,6 @@ import FirebaseFirestore
 
 class SignUpController: UIViewController {
   
-    
     let btnAddPhoto : UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(#imageLiteral(resourceName: "Choose_Photo").withRenderingMode(.alwaysOriginal), for: .normal)
