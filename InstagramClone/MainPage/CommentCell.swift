@@ -12,8 +12,6 @@ class CommentCell : UICollectionViewCell {
         didSet {
             guard let comment = comment else { return }
             imgUserProfile.sd_setImage(with: URL(string: comment.user.profilePhotoURL), completed:nil)
-
-            
             let attrText = NSMutableAttributedString(string: comment.user.userName, attributes: [.font : UIFont.boldSystemFont(ofSize: 15)])
             lblComment.attributedText = attrText
             attrText.append(NSAttributedString(string: " " + (comment.commentMessage), attributes: [.font : UIFont.systemFont(ofSize: 15)]))
