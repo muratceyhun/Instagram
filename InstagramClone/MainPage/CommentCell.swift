@@ -20,7 +20,6 @@ class CommentCell : UICollectionViewCell {
         }
     }
     
-
     let imgUserProfile : UIImageView = {
         let img = UIImageView()
         img.clipsToBounds = true
