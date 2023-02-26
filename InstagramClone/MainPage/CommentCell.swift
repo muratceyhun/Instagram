@@ -16,7 +16,6 @@ class CommentCell : UICollectionViewCell {
             lblComment.attributedText = attrText
             attrText.append(NSAttributedString(string: " " + (comment.commentMessage), attributes: [.font : UIFont.systemFont(ofSize: 15)]))
             lblComment.attributedText = attrText
-            
         }
     }
     
