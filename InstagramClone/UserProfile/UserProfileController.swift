@@ -17,8 +17,6 @@ class UserProfileController : UICollectionViewController {
     var gridView = true
     var userID : String?
     
-    
-    
     let postCellID = "postCellID"
     
     
