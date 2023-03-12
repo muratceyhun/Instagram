@@ -12,7 +12,6 @@ import FirebaseFirestore
 
 class UserProfileController : UICollectionViewController {
     
-    
     let listViewCellID = "listViewCellID"
     var gridView = true
     var userID : String?
