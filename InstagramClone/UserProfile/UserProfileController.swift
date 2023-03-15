@@ -17,7 +17,6 @@ class UserProfileController : UICollectionViewController {
     var userID : String?
     let postCellID = "postCellID"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
