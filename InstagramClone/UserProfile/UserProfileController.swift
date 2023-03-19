@@ -26,7 +26,6 @@ class UserProfileController : UICollectionViewController {
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerID")
         
         collectionView.register(UserSharePhotoCell.self, forCellWithReuseIdentifier: postCellID)
-        
         collectionView.register(MainPageCell.self, forCellWithReuseIdentifier: listViewCellID)
         btnProfileSetting()
         
