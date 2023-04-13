@@ -112,7 +112,6 @@ class MainController : UICollectionViewController {
                                 return p1.date.dateValue().compare(p2.date.dateValue()) == .orderedDescending
                             }
                             self.collectionView.reloadData()
-                            
                         }
                         
                     }
